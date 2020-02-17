@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>test</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <script src="strdiff.js"></script>
+        <script type="text/javascript">
+
+        function printStr(tagName, str, maxLen) {
+            const elem = document.getElementById(tagName);
+            let sb = "";
+            for(let i=0; i<maxLen; i++) {
+                const c = str.charAt(i) || "&nbsp;";
+                sb = sb+`<td class='normal'>${c}</td>`;
+            }
+            elem.innerHTML = sb;
+        }
+            
+        function clickme() {
+            const str1 = document.getElementById("str1").value;
+            const str2 = document.getElementById("str2").value;
+            
+            const d = diff(str1,str2);
+            const elem = document.getElementById("tr-diff");
+            const map = ["deleted","normal", "added"];
+            let sb = "";
+            let cls = "normal";
+            let maxLen = 0;
+            d.forEach( ([type, value]) => {
+                cls = map[type+1];
+                for(let i=0; i<value.length; i++) {
+                    sb = sb + `<td class=\"${cls}\">${value.charAt(i)}</td>`;
+                    maxLen++;
+                }
+            });
+            console.log(maxLen);
+            printStr("tr-str1", str1, maxLen);
+            printStr("tr-str2", str2, maxLen);
+
+            elem.innerHTML=sb;
+        }
+        </script>
+        <input id="str1" />
+        <input id="str2" />
+        <hr />
+        <div id="root">
+            <table border="1" cellpadding="4">
+                <tbody>
+                    <tr id="tr-str1"></tr>
+                    <tr id="tr-str2"></tr>
+                    <tr id="tr-diff"></tr>
+                </tbody>
+            </table>
+        </div>
+        <hr />
+        <button onclick="clickme()">Click</button>
+    </body>
+</html>
