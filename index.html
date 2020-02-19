@@ -6,7 +6,46 @@
         <title>test</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style.css">
+        <style type="text/css">
+#root {
+    font-size: 28px;    
+}
+
+.added {
+    color: blue;
+}
+
+.deleted {
+    color: red;
+    text-decoration: line-through;
+}
+
+.normal {
+    color: black
+}
+
+.pic {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.redCell {
+    background-color: red;
+    width:32px;
+    height:32px;
+}
+
+.greenCell {
+    background-color: green;
+    width:32px;
+    height:32px;
+}
+
+.blueCell {
+    background-color: blue;
+    width:32px;
+    height:32px;
+}
+        </style>
     </head>
     <body>
         <script src="strdiff.js"></script>
@@ -46,8 +85,8 @@
             elem.innerHTML=sb;
         }
         </script>
-        <input id="str1" />
-        <input id="str2" />
+        <input id="str1" value="Saturday"/>
+        <input id="str2" value="Sunday"/>
         <hr />
         <div id="root">
             <table border="1" cellpadding="4">
